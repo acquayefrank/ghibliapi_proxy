@@ -10,7 +10,7 @@ from klein import Klein
 
 MONGODB_URI = os.getenv('MONGODB_URI')
 client = MongoClient(MONGODB_URI)
-DG = os.getenv('MONGO_INITDB_DATABASE')
+MONGODB_DATABASE = os.getenv('MONGODB_DATABASE')
 app = Klein()
 
 
@@ -43,7 +43,7 @@ def pg_films(request):
 
 @app.route('/api/v1/films/<film_id>/')
 def pg_film(request, film_id):
-    db = client.films
+    db = client[MONGODB_DATABASE]
     collection = db.films
     data = collection.find_one({'film_id': film_id})
     film = get_ghibli_film(film_id)
