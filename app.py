@@ -47,15 +47,15 @@ def pg_films(request):
     response = json.dumps(content)
     return response
 
-@app.route('/api/v1/films/<film_id>/')
-def pg_film(request, film_id):
-    db = client[MONGODB_DATABASE]
-    collection = db.films
-    data = collection.find_one({'film_id': film_id})
-    film = get_ghibli_film(film_id)
-    film['r_name'] = data['r_name'] #.encode(encoding = 'UTF-8',errors = 'strict')
-    response = sjson.dumps(film) #, ensure_ascii=False).encode('utf8')
-    return response
+# @app.route('/api/v1/films/<film_id>/')
+# def pg_film(request, film_id):
+#     db = client[MONGODB_DATABASE]
+#     collection = db.films
+#     data = collection.find_one({'film_id': film_id})
+#     film = get_ghibli_film(film_id)
+#     film['r_name'] = data['r_name'] #.encode(encoding = 'UTF-8',errors = 'strict')
+#     response = sjson.dumps(film) #, ensure_ascii=False).encode('utf8')
+#     return response
     
 
 if __name__ == "__main__":

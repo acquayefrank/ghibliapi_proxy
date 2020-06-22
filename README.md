@@ -20,3 +20,5 @@ To run server locally
 
 *  Unit Tests
 *  Add test data to MongoDB
+
+# For some strange reason db connection fails on heroku must fix.
