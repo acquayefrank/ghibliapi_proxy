@@ -16,7 +16,8 @@ services:
       MONGODB_USERNAME: films
       MONGODB_PASSWORD: films
       MONGODB_HOSTNAME: mongodb
-      MONGODB_URI: mongodb://films:films@mongodb:27017/films
+      MONGODB_PORT: 27017
+      MONGODB_URI: mongodb://films:films@mongodb
     networks:
       - backend
   mongodb:

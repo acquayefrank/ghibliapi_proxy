@@ -7,9 +7,15 @@ import simplejson as sjson
 from pymongo import MongoClient
 from klein import Klein
 
-
-MONGODB_URI = os.getenv('MONGODB_URI')
-client = MongoClient(MONGODB_URI)
+MONGODB_HOSTNAME = os.getenv('MONGODB_HOSTNAME')
+MONGODB_PORT = int(os.getenv('MONGODB_PORT'))
+MONGODB_USERNAME = os.getenv('MONGODB_USERNAME')
+MONGODB_PASSWORD = os.getenv('MONGODB_PASSWORD')
+client = MongoClient(host=MONGODB_HOSTNAME,
+                     port=MONGODB_PORT, 
+                     username=MONGODB_USERNAME, 
+                     password=MONGODB_PASSWORD,
+                    authSource="admin")
 MONGODB_DATABASE = os.getenv('MONGODB_DATABASE')
 app = Klein()
 
