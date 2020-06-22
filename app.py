@@ -1,4 +1,5 @@
 import json
+import os
 
 import requests
 import pymongo
@@ -7,7 +8,8 @@ from pymongo import MongoClient
 from klein import Klein
 
 
-client = MongoClient('mongodb://%s:%s@mongodb' % ('films', 'films'))
+MONGODB_URI = os.getenv('MONGODB_URI')
+client = MongoClient(MONGODB_URI)
 app = Klein()
 
 
@@ -48,5 +50,6 @@ def pg_film(request, film_id):
     
 
 if __name__ == "__main__":
-    app.run("0.0.0.0", 8080)
+    port = int(os.environ.get("PORT", 8080))
+    app.run("0.0.0.0", port)
 

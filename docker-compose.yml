@@ -16,6 +16,7 @@ services:
       MONGODB_USERNAME: films
       MONGODB_PASSWORD: films
       MONGODB_HOSTNAME: mongodb
+      MONGODB_URI: mongodb://films:films@mongodb
     networks:
       - backend
   mongodb:
