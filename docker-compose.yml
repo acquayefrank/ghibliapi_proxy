@@ -1,0 +1,39 @@
+version: "3"
+services:
+  web:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8080"
+    tty: true
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    environment:
+      MONGODB_DATABASE: films
+      MONGODB_USERNAME: films
+      MONGODB_PASSWORD: films
+      MONGODB_HOSTNAME: mongodb
+    networks:
+      - backend
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    command: mongod --auth
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: films
+      MONGO_INITDB_ROOT_PASSWORD: films
+      MONGO_INITDB_DATABASE: films
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - ./data/db:/data/db
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

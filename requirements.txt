@@ -1,0 +1,5 @@
+klein==20.6.0
+requests==2.24.0
+ipdb==0.12
+pymongo==3.10.1
+simplejson==3.17
